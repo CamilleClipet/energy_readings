@@ -1,7 +1,7 @@
 import os
 import pytest
 from django.test import TestCase
-from energy_readings.app.models import File, Readings
+from energy_readings.app.models import File, Reading
 from energy_readings.app.utils import process_flow_file
 
 
@@ -18,7 +18,7 @@ class TestFlowFileProcessing(TestCase):
         self.assertTrue(file_record.footer.startswith('ZPT|'))
         
         # Check readings
-        readings = Readings.objects.filter(file_name=file_record)
+        readings = Reading.objects.filter(file_name=file_record)
         self.assertEqual(readings.count(), 2)
         
         # Check first reading details

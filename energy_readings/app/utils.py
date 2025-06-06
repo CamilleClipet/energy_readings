@@ -1,5 +1,5 @@
 from datetime import datetime
-from .models import File, Readings
+from .models import File, Reading
 
 
 def process_flow_file(file_path: str) -> File:
@@ -42,7 +42,7 @@ def process_flow_file(file_path: str) -> File:
                 reading_datetime = datetime.strptime(data[2], '%Y%m%d%H%M%S')
                 md_reset_datetime = datetime.strptime(data[4], '%Y%m%d%H%M%S') if data[4] else None
                 
-                reading = Readings(
+                reading = Reading(
                     file_name=file_record,
                     mpan_core=current_mpan,
                     validation_status=validation_status,
@@ -65,6 +65,6 @@ def process_flow_file(file_path: str) -> File:
                     readings_data[-1].meter_reading_reason_code = data[1]
                     readings_data[-1].meter_reading_status = data[2] == 'V'
         
-        Readings.objects.bulk_create(readings_data)
+        Reading.objects.bulk_create(readings_data)
         
         return file_record 
