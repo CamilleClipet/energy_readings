@@ -1,0 +1,10 @@
+Django==5.1.6
+psycopg2-binary==2.9.10
+pytest==8.3.5
+pytest-django==4.11.1
+
+# Development dependencies
+black==24.2.0
+flake8==7.0.0
+mypy==1.9.0
+django-stubs==4.2.7  # Type stubs for Django
