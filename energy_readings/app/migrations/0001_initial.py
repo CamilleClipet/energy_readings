@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "ordering": ["-reading_datetime"],
+                "ordering": ["file_name","-reading_datetime"],
             },
         ),
     ]

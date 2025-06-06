@@ -32,7 +32,7 @@ class ReadingsAdmin(admin.ModelAdmin):
         "meter_reading_status",
     )
     search_fields = ("mpan_core",)
-    ordering = ("-reading_datetime",)
+    ordering = ("file_name", "-reading_datetime",)
 
     def get_search_results(
         self, request: HttpRequest, queryset: QuerySet, search_term: str

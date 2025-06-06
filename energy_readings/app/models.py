@@ -32,4 +32,4 @@ class Reading(models.Model):
     meter_reading_status = models.BooleanField(null=True)
 
     class Meta:
-        ordering = ["-reading_datetime"]
+        ordering = ["file_name", "-reading_datetime"]
