@@ -9,11 +9,15 @@ def process_flow_file(file_path: str) -> File:
     readings_data = []
     
     with open(file_path, 'r') as file:
-        lines = file.readlines()
+        # Read all lines and remove the empty ones
+        lines = [line.strip() for line in file.readlines() if line.strip()]
+        
+        if len(lines) <= 1:
+            raise ValueError("File is empty or incomplete")
         
         # Process header (first line) and footer (last line)
-        header = lines[0].strip()
-        footer = lines[-1].strip()
+        header = lines[0]
+        footer = lines[-1]
         
         # Create File record
         file_name = file_path.split('/')[-1]
@@ -22,13 +26,10 @@ def process_flow_file(file_path: str) -> File:
             header=header,
             footer=footer
         )
-
-        if len(lines) <= 1:
-            raise ValueError("File is empty or incomplete")
         
         # Process data lines
         for line in lines[1:-1]:  # Skip header and footer
-            data = line.strip().split('|')
+            data = line.split('|')
             code = data[0]
             
             if code == '026':
