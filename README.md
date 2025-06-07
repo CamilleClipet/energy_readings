@@ -50,6 +50,8 @@ You can use the example file provided. In the root directory, run:
 python3 manage.py import_flow energy_readings/example_file.txt
 # you can also import a file external to this directory, just use the absolute path
 python3 manage.py import_flow /Users/camilleclipet/Documents/example_file2.txt
+# it is possible to import several files at once:
+python3 manage.py import_flow filepath_1 filepath_2
 ```
 
 ## Use the admin view
